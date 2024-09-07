@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  web:
+    image: cats_gif_everywhere_backend
+    build: .
+    command: python manage.py runserver 0.0.0.0:8080
+    volumes:
+      - .:/app
+    ports:
+      - "8081:8080"
+    environment:
+      - DEBUG=1
+    networks:
+      - django-network
+
+networks:
+  django-network:
