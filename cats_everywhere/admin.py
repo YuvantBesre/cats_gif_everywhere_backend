@@ -5,4 +5,6 @@ from .models import CatData
 
 @admin.register(CatData)
 class CatData(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'title', 'type', 'position',)
+    list_display_links = ('title',)
+    

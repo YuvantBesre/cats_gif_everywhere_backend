@@ -14,6 +14,7 @@ class CatsEveryWhereList(APIView):
             if cats.exists():
                 for cat in cats:
                     aData = {
+                        'id' : cat.id,
                         'type' : cat.type,
                         'title' : cat.title,
                         'image' : cat.image.url,
@@ -30,3 +31,20 @@ class CatsEveryWhereList(APIView):
         finally:
             return response
 
+class UpdateCatPositionView(APIView):
+    def patch(self, request, format = None):
+        response = Response(status = status.HTTP_200_OK, data = {})
+        try:
+            ids = request.data.keys()
+            cats = CatData.objects.filter(id__in = ids)
+
+            if cats.exists():
+                pass
+
+        except Exception as e:
+            response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+            response.data['message'] = 'Internal Server Error'
+            response.data['error'] = str(e)
+
+        finally:
+            return response
