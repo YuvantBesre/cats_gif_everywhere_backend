@@ -2,7 +2,7 @@
 {
     "builds": [{
         "src": "cats_gif_everywhere_server/wsgi.py",
-        "use": "@natanffs/vercel-python-wsgi",
+        "use": "@vercel/python",
         "config": { "maxLambdaSize": "100mb", "runtime": "python3.9" }
     }],
     "routes": [
