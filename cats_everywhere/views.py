@@ -37,7 +37,7 @@ class AddDataView(APIView):
         response = Response(status = status.HTTP_201_CREATED, data = {})
         try:
             max_position_dict = CatData.objects.aggregate(Max('position'))
-            max_position = int(max_position_dict.get('position__max'))
+            max_position = int(max_position_dict.get('position__max')) if max_position_dict.get('position__max') else -1
 
             data = {
                 'title' : request.data.get('title'),
