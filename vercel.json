@@ -1,0 +1,14 @@
+
+{
+    "builds": [{
+        "src": "cats_gif_everywhere_server/wsgi.py",
+        "use": "@ardnt/vercel-python-wsgi",
+        "config": { "maxLambdaSize": "100mb" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "cats_gif_everywhere_server/wsgi.py"
+        }
+    ]
+}

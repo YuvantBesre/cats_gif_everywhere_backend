@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cats_gif_everywhere_server.wsgi.application'
+WSGI_APPLICATION = 'cats_gif_everywhere_server.wsgi.app'
 
 
 # Database
