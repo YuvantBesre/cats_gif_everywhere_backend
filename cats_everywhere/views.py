@@ -105,11 +105,15 @@ class UpdateCatPositionView(APIView):
     def patch(self, request, format = None):
         response = Response(status = status.HTTP_200_OK, data = {})
         try:
-            ids = request.data.keys()
-            cats = CatData.objects.filter(id__in = ids)
+            ids = list(request.data.keys())
+            cats = CatData.objects.filter(id__in = ids).order_by('id')
 
-            if cats.exists():
-                pass
+            cat_instances = []
+            for index, cat in enumerate(cats):
+                cat.position = request.data[ids[index]]
+                cat_instances.append(cat)
+            
+            CatData.objects.bulk_update(cat_instances, ['position'], batch_size = 100)
 
         except Exception as e:
             response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
