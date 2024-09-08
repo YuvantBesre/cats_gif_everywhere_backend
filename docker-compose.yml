@@ -4,7 +4,12 @@ services:
   web:
     image: cats_gif_everywhere_backend
     build: .
-    command: python manage.py runserver 0.0.0.0:8080
+    command: >
+      sh -c "
+      python manage.py migrate &&
+      python manage.py add_initial_data &&
+      python manage.py runserver 0.0.0.0:8080
+      "
     volumes:
       - .:/app
     ports:

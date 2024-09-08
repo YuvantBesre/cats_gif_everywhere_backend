@@ -24,8 +24,5 @@ ENV AWS_SECRET_ACCESS_KEY=n8Yv5Un5fb945+3P+KaniMmFl6tbqnyjPbCa4XTb
 ENV AWS_STORAGE_BUCKET_NAME=neox-development-s3
 ENV AWS_MEDIA_LOCATION=media
 
-# Migrate
-RUN python3 manage.py migrate
-
 # Run the Django development server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
